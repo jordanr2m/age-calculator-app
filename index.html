@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,400;1,800&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="css/normalize.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="js/script.js" defer></script>
+
+  <title>Frontend Mentor | Age calculator app</title>
+</head>
+
+<body>
+  <main class="card">
+    <form>
+      <div class="user-input">
+        <div class="day-input">
+          <label for="day-number">Day</label>
+          <input type="text" id="day-number" name="day-number" placeholder="DD">
+          <!-- Can use min & max attributes in number input, but will use JS to validate instead -->
+          <p class="error-message-all hidden">This field is required</p>
+          <p class="error-message-day hidden">Must be a valid day</p>
+        </div>
+
+        <div class="month-input">
+          <label for="month-number">Month</label>
+          <input type="text" id="month-number" name="month-number" placeholder="MM">
+          <p class="error-message-all hidden">This field is required</p>
+          <p class="error-message-month hidden">Must be a valid month</p>
+        </div>
+
+        <div class="year-input">
+          <label for="year-number">Year</label>
+          <input type="text" id="year-number" name="year-number" placeholder="YYYY">
+          <p class="error-message-all hidden">This field is required</p>
+          <p class="error-message-year hidden">Must be in the past</p>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+      <input type="submit" id="submit" value="⇟">
+    </form>
+
+    <div class="results">
+      <p><span id="years-result">- - </span>years<br>
+        <span id="months-result">- - </span>months<br>
+        <span id="days-result">- - </span>days<br>
+      </p>
+    </div>
+  </main>
+
+  <footer class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+    Coded by <a href="https://github.com/jordanr2m" target="_blank">Jordan J</a>.
+  </footer>
+
+</body>
+
+</html>
