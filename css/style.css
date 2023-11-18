@@ -3,8 +3,16 @@ html {
     box-sizing: border-box;
 }
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
     box-sizing: inherit;
+}
+
+:root {
+    --accent: hsl(0, 100%, 67%);
+    --border: hsl(0, 0%, 86%);
+    --label: hsl(0, 1%, 44%);
 }
 
 body {
@@ -16,10 +24,10 @@ body {
     font-size: 16px;
     font-family: 'Poppins', sans-serif;
     color: hsl(0, 0%, 8%);
-    background-color: hsl(0, 0%, 86%);
+    background-color: var(--border);
 }
 
-p {
+.results p {
     margin-bottom: 0;
     margin-top: 0.5em;
     font-weight: 800;
@@ -27,7 +35,7 @@ p {
     font-size: 3em;
 }
 
-p span {
+.results p span {
     color: hsl(259, 100%, 65%);
 }
 
@@ -60,22 +68,21 @@ label {
     font-size: 0.75em;
     text-transform: uppercase;
     font-weight: 700;
-    color: hsl(0, 1%, 44%);
+    color: var(--label);
 }
 
-input[type=text] {
+input[type=number] {
     width: 80px;
-    border: 1px solid hsl(0, 0%, 86%);
+    border: 1px solid var(--border);
     border-radius: 5px;
     padding: 1em;
-    color:hsl(0, 0%, 8%);
+    color: hsl(0, 0%, 8%);
     font-weight: 700;
     margin-right: 1em;
-    margin-bottom: 1em;
 }
 
 input#year-number {
-    margin-right: 0;  
+    margin-right: 0;
 }
 
 input::placeholder {
@@ -92,13 +99,13 @@ input:focus {
 }
 
 .divider {
-    border-bottom: 1px solid hsl(0, 0%, 86%);
+    border-bottom: 1px solid var(--border);
     margin: 2em 0;
+    padding-top: 1em;
 }
 
 input[type=submit] {
     align-self: center;
-    margin-right: 0;
     border-radius: 100%;
     padding: 10px 18px;
     font-size: 1.5em;
@@ -113,10 +120,24 @@ input[type=submit] {
     display: none;
 }
 
-.attribution { 
-    font-size: 11px; 
-    text-align: center; 
+/* ERROR MESSAGE STYLES */
+.error-message-all,
+.error-message {
+    font-size: 0.5em;
+    color: var(--accent);
+    font-style: italic;
+    margin-top: 0.75em;
+    margin-bottom: 1em;
+}
+
+/* FOOTER STYLES */
+.attribution {
+    font-size: 11px;
+    text-align: center;
     margin-top: 3em;
     font-weight: 400;
 }
-.attribution a { color: hsl(228, 45%, 44%); }
+
+.attribution a {
+    color: hsl(228, 45%, 44%);
+}

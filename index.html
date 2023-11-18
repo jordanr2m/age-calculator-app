@@ -25,24 +25,24 @@
       <div class="user-input">
         <div class="day-input">
           <label for="day-number">Day</label>
-          <input type="text" id="day-number" name="day-number" placeholder="DD">
+          <input type="number" id="day-number" name="day-number" placeholder="DD">
           <!-- Can use min & max attributes in number input, but will use JS to validate instead -->
           <p class="error-message-all hidden">This field is required</p>
-          <p class="error-message-day hidden">Must be a valid day</p>
+          <p class="error-message error-message-day hidden">Must be a valid day</p>
         </div>
 
         <div class="month-input">
           <label for="month-number">Month</label>
-          <input type="text" id="month-number" name="month-number" placeholder="MM">
+          <input type="number" id="month-number" name="month-number" placeholder="MM">
           <p class="error-message-all hidden">This field is required</p>
-          <p class="error-message-month hidden">Must be a valid month</p>
+          <p class="error-message error-message-month hidden">Must be a valid month</p>
         </div>
 
         <div class="year-input">
           <label for="year-number">Year</label>
-          <input type="text" id="year-number" name="year-number" placeholder="YYYY">
+          <input type="number" id="year-number" name="year-number" placeholder="YYYY">
           <p class="error-message-all hidden">This field is required</p>
-          <p class="error-message-year hidden">Must be in the past</p>
+          <p class="error-message error-message-year hidden">Must be in the past</p>
         </div>
       </div>
 
