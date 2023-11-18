@@ -37,6 +37,7 @@ body {
 
 .results p span {
     color: hsl(259, 100%, 65%);
+    padding-right: 0.25em;
 }
 
 .card {
