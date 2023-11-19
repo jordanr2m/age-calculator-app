@@ -118,3 +118,7 @@ const calcYears = function () {
     console.log(totalYears);
     yearsResult.innerText = totalYears;
 };
+
+
+
+// For additional help with this project, please see: https://www.frontendmentor.io/solutions/calendar-by-jasurbek-DOS9m7gebb (Example without animation) OR https://www.frontendmentor.io/solutions/age-calculator-using-java-script-html-and-css-bs3mTk-_Ka (Example with animation)

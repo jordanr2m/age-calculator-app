@@ -5,13 +5,13 @@ let currentDate = currentTime.getDate();
 let currentMonth = currentTime.getMonth() + 1; // starts at 0 by default
 let currentYear = currentTime.getFullYear();
 
-// Inputs and response paragraphs - use let bc will change
-let dayInput = document.querySelector("#day-number");
-let monthInput = document.querySelector("#month-number");
-let yearInput = document.querySelector("#year-number");
-let dayInfo = document.querySelector("#days-result");
-let monthsInfo = document.querySelector("#months-result");
-let yearsInfo = document.querySelector("#years-result");
+// Inputs & response paragraphs
+const dayInput = document.querySelector("#day-number");
+const monthInput = document.querySelector("#month-number");
+const yearInput = document.querySelector("#year-number");
+const dayInfo = document.querySelector("#days-result");
+const monthsInfo = document.querySelector("#months-result");
+const yearsInfo = document.querySelector("#years-result");
 
 // Labels & error msgs
 const labels = document.querySelectorAll("label");
