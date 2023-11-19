@@ -30,14 +30,15 @@ function calcDateTillNow() {
     let dateResult = currentDate - addedDate;
     let yearResult = currentYear - addedYear;
 
-    // calculations
+    // calculations - calc months if monthResult is negative or 0
     if (monthResult < 0) {
-        monthResult = currentMonth + 12 - addedMonth; // add an extra year here by taking one away from the yearResult
-        yearResult--;
-    } else if (monthResult == 0) {
-        yearResult; // return the yearResult
+        monthResult = currentMonth + 12 - addedMonth; // add an extra year to current month by taking 12 months away from the yearResult (below)
+        yearResult--; 
     }
-
+    // } else if (monthResult == 0) {
+    //     yearResult; // Don't use return here!! If month result is 0, do not change yearResult
+    // }
+    // calc days if dateResult is negative or 0
     if (dateResult < 0) {
         if (
             // Months with 31 days
@@ -51,7 +52,7 @@ function calcDateTillNow() {
         ) {
             dateResult = 31 + currentDate - addedDate;
             monthResult--;
-            // February
+            // February (no Leap years)
         } else if (monthResult == 2) {
             dateResult = 28 + currentDate - addedDate;
             monthResult--;
@@ -67,7 +68,7 @@ function calcDateTillNow() {
         } else if (monthResult == 0) {
             monthResult = 12; // Take 12 months from the years
             yearResult--;
-            dateResult = 31 + currentDate - addedDate; // Take 31 days from Jan
+            dateResult = 31 + currentDate - addedDate; // Take 31 days from month (Dec or Jan?)
             monthResult--;
         }
     }

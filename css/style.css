@@ -117,6 +117,10 @@ input[type=submit] {
     top: 65%;
 }
 
+input[type=submit]:hover {
+    background-color: hsl(0, 0%, 8%);
+}
+
 .hidden {
     display: none;
 }
