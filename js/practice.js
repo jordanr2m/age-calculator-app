@@ -9,15 +9,45 @@ let currentYear = currentTime.getFullYear();
 let dayInput = document.querySelector("#day-number");
 let monthInput = document.querySelector("#month-number");
 let yearInput = document.querySelector("#year-number");
-
 let dayInfo = document.querySelector("#days-result");
 let monthsInfo = document.querySelector("#months-result");
 let yearsInfo = document.querySelector("#years-result");
 
+// Inputs, labels & error msgs
+const inputs = document.querySelectorAll("input[type=number]");
+const errorMsgs = document.querySelectorAll(".error-message-all");
+const labels = document.querySelectorAll("label");
+const errorMessageDay = document.querySelector(".error-message-day");
+const errorMessageMonth = document.querySelector(".error-message-month");
+const errorMessageYear = document.querySelector(".error-message-year");
+
+
 submitButton.addEventListener("click", function (e) {
     e.preventDefault();
+    validateInput();
     calcDateTillNow();
 });
+
+// validate input
+function validateInput() {
+    let addedMonth = monthInput.value;
+    let addedYear = yearInput.value;
+    let addedDate = dayInput.value;
+    let currentDate = new Date();
+    let currentYear = currentDate.getFullYear();
+
+    // if (!addedMonth && !addedDate && !addedYear) {
+    //     inputs.forEach((input) => input.style.border = "1px solid var(--accent)");
+    //     errorMsgs.forEach((msg) => msg.classList.remove("hidden"));
+    //     labels.forEach((label) => label.style.color = "var(--accent)");
+    // } else if (addedDate < 1 || addedDate > 31) {
+    //     errorMessageDay.classList.remove("hidden");
+    // } else if (addedMonth < 1 || addedMonth > 12) {
+    //     errorMessageMonth.classList.remove("hidden");
+    // } else if (addedYear < 1 || addedYear > currentYear) {
+    //     errorMessageYear.classList.remove("hidden");
+    // }
+}
 
 function calcDateTillNow() {
     // target user values with let
@@ -33,7 +63,7 @@ function calcDateTillNow() {
     // calculations - calc months if monthResult is negative or 0
     if (monthResult < 0) {
         monthResult = currentMonth + 12 - addedMonth; // add an extra year to current month by taking 12 months away from the yearResult (below)
-        yearResult--; 
+        yearResult--;
     }
     // } else if (monthResult == 0) {
     //     yearResult; // Don't use return here!! If month result is 0, do not change yearResult
