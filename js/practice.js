@@ -2,10 +2,10 @@ const submitButton = document.querySelector("#submit");
 // Dates
 let currentTime = new Date();
 let currentDate = currentTime.getDate();
-let currentMonth = currentTime.getMonth() + 1; // starts at 0
+let currentMonth = currentTime.getMonth() + 1; // starts at 0 by default
 let currentYear = currentTime.getFullYear();
 
-// Inputs and response ps - use let bc will change
+// Inputs and response paragraphs - use let bc will change
 let dayInput = document.querySelector("#day-number");
 let monthInput = document.querySelector("#month-number");
 let yearInput = document.querySelector("#year-number");
@@ -13,42 +13,98 @@ let dayInfo = document.querySelector("#days-result");
 let monthsInfo = document.querySelector("#months-result");
 let yearsInfo = document.querySelector("#years-result");
 
-// Inputs, labels & error msgs
-const inputs = document.querySelectorAll("input[type=number]");
-const errorMsgs = document.querySelectorAll(".error-message-all");
+// Labels & error msgs
 const labels = document.querySelectorAll("label");
 const errorMessageDay = document.querySelector(".error-message-day");
 const errorMessageMonth = document.querySelector(".error-message-month");
 const errorMessageYear = document.querySelector(".error-message-year");
+// Error message all array
+const errorMessageAll = Array.from(document.querySelectorAll(".error-message-all"));
 
 
 submitButton.addEventListener("click", function (e) {
     e.preventDefault();
-    validateInput();
-    calcDateTillNow();
-});
-
-// validate input
-function validateInput() {
     let addedMonth = monthInput.value;
     let addedYear = yearInput.value;
     let addedDate = dayInput.value;
-    let currentDate = new Date();
-    let currentYear = currentDate.getFullYear();
+    const validDate = validateInput(addedDate, addedMonth, addedYear);
+    // console.log(validDate);
+    if (validDate) {
+        calcDateTillNow();
+    }
+});
 
-    // if (!addedMonth && !addedDate && !addedYear) {
-    //     inputs.forEach((input) => input.style.border = "1px solid var(--accent)");
-    //     errorMsgs.forEach((msg) => msg.classList.remove("hidden"));
-    //     labels.forEach((label) => label.style.color = "var(--accent)");
-    // } else if (addedDate < 1 || addedDate > 31) {
-    //     errorMessageDay.classList.remove("hidden");
-    // } else if (addedMonth < 1 || addedMonth > 12) {
-    //     errorMessageMonth.classList.remove("hidden");
-    // } else if (addedYear < 1 || addedYear > currentYear) {
-    //     errorMessageYear.classList.remove("hidden");
-    // }
-}
+// validate input
+function validateInput(inputD, inputM, inputY) {
+    // Check that its not blank & is accepted #
+    // Day
+    if (inputD.length === 0) {
+        addError(errorMessageAll, 0);
+        addColor(labels, 0)
+        dayInput.style.border = "1px solid var(--accent)";
+    } else if (inputD < 1 || inputD > 31) {
+        removeError(errorMessageAll, 0);
+        addColor(labels, 0)
+        dayInput.style.border = "1px solid var(--accent)";
+        errorMessageDay.classList.remove("hidden");
+    } else {
+        removeError(errorMessageAll, 0);
+        removeColor(labels, 0);
+        errorMessageDay.classList.add("hidden");
+        dayInput.style.border = "1px solid var(--border)";
+    }
+    // Month
+    if (inputM.length === 0) {
+        addError(errorMessageAll, 1);
+        addColor(labels, 1)
+        monthInput.style.border = "1px solid var(--accent)";
+    } else if (inputM < 1 || inputM > 12) {
+        removeError(errorMessageAll, 1);
+        addColor(labels, 1)
+        monthInput.style.border = "1px solid var(--accent)";
+        errorMessageMonth.classList.remove("hidden");
+    } else {
+        removeError(errorMessageAll, 1);
+        removeColor(labels, 1);
+        errorMessageMonth.classList.add("hidden");
+        monthInput.style.border = "1px solid var(--border)";
+    }
+    // Year
+    if (inputY.length === 0) {
+        addError(errorMessageAll, 2);
+        addColor(labels, 2)
+        yearInput.style.border = "1px solid var(--accent)";
+    } else if (inputY < 0 || inputY > currentYear) {
+        removeError(errorMessageAll, 2);
+        addColor(labels, 2)
+        yearInput.style.border = "1px solid var(--accent)";
+        errorMessageYear.classList.remove("hidden");
+    } else {
+        removeError(errorMessageAll, 2);
+        removeColor(labels, 2);
+        errorMessageYear.classList.add("hidden");
+        yearInput.style.border = "1px solid var(--border)";
+    }
+    return inputD, inputM, inputY; // return all inputs so that they can be used by subsequent code
+};
 
+// Functions to Add & Remove Errors /////
+const addError = function (array, index) {
+    array[index].classList.remove("hidden");
+};
+const removeError = function (array, index) {
+    array[index].classList.add("hidden");
+};
+
+// Function to update Label color
+const addColor = function (array, index) {
+    array[index].style.color = "var(--accent)";
+};
+const removeColor = function (array, index) {
+    array[index].style.color = "var(--label)";
+};
+
+// Perform calculation
 function calcDateTillNow() {
     // target user values with let
     let addedMonth = monthInput.value;
@@ -65,9 +121,7 @@ function calcDateTillNow() {
         monthResult = currentMonth + 12 - addedMonth; // add an extra year to current month by taking 12 months away from the yearResult (below)
         yearResult--;
     }
-    // } else if (monthResult == 0) {
-    //     yearResult; // Don't use return here!! If month result is 0, do not change yearResult
-    // }
+    
     // calc days if dateResult is negative or 0
     if (dateResult < 0) {
         if (
