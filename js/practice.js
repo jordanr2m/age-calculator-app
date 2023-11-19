@@ -24,13 +24,14 @@ const errorMessageAll = Array.from(document.querySelectorAll(".error-message-all
 
 submitButton.addEventListener("click", function (e) {
     e.preventDefault();
+    // target user entered values with let
+    let addedDate = dayInput.value;
     let addedMonth = monthInput.value;
     let addedYear = yearInput.value;
-    let addedDate = dayInput.value;
     const validDate = validateInput(addedDate, addedMonth, addedYear);
     // console.log(validDate);
     if (validDate) {
-        calcDateTillNow();
+        calcDateTillNow(addedDate, addedMonth, addedYear);
     }
 });
 
@@ -88,7 +89,7 @@ function validateInput(inputD, inputM, inputY) {
     return inputD, inputM, inputY; // return all inputs so that they can be used by subsequent code
 };
 
-// Functions to Add & Remove Errors /////
+// Functions to Add & Remove Errors
 const addError = function (array, index) {
     array[index].classList.remove("hidden");
 };
@@ -96,7 +97,7 @@ const removeError = function (array, index) {
     array[index].classList.add("hidden");
 };
 
-// Function to update Label color
+// Functions to update Label color
 const addColor = function (array, index) {
     array[index].style.color = "var(--accent)";
 };
@@ -105,20 +106,15 @@ const removeColor = function (array, index) {
 };
 
 // Perform calculation
-function calcDateTillNow() {
-    // target user values with let
-    let addedMonth = monthInput.value;
-    let addedYear = yearInput.value;
-    let addedDate = dayInput.value;
-
+function calcDateTillNow(inputD, inputM, inputY) {
     // create results variables with let
-    let monthResult = currentMonth - addedMonth;
-    let dateResult = currentDate - addedDate;
-    let yearResult = currentYear - addedYear;
+    let monthResult = currentMonth - inputM;
+    let dateResult = currentDate - inputD;
+    let yearResult = currentYear - inputY;
 
-    // calculations - calc months if monthResult is negative or 0
+    // calculations - calc months if monthResult is negative
     if (monthResult < 0) {
-        monthResult = currentMonth + 12 - addedMonth; // add an extra year to current month by taking 12 months away from the yearResult (below)
+        monthResult = currentMonth + 12 - inputM; // add an extra year to current month by taking 12 months away from the yearResult (below)
         yearResult--;
     }
     
@@ -134,11 +130,11 @@ function calcDateTillNow() {
             monthResult == 10 ||
             monthResult == 12
         ) {
-            dateResult = 31 + currentDate - addedDate;
+            dateResult = 31 + currentDate - inputD;
             monthResult--;
             // February (no Leap years)
         } else if (monthResult == 2) {
-            dateResult = 28 + currentDate - addedDate;
+            dateResult = 28 + currentDate - inputD;
             monthResult--;
         } else if (
             // Months with 30 days
@@ -147,12 +143,12 @@ function calcDateTillNow() {
             monthResult == 9 ||
             monthResult == 11
         ) {
-            dateResult = 30 + currentDate - addedDate;
+            dateResult = 30 + currentDate - inputD;
             monthResult--;
         } else if (monthResult == 0) {
             monthResult = 12; // Take 12 months from the years
             yearResult--;
-            dateResult = 31 + currentDate - addedDate; // Take 31 days from month (Dec or Jan?)
+            dateResult = 31 + currentDate - inputD; // Take 31 days from month (Dec)
             monthResult--;
         }
     }
