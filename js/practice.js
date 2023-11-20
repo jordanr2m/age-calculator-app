@@ -24,10 +24,10 @@ const errorMessageAll = Array.from(document.querySelectorAll(".error-message-all
 
 submitButton.addEventListener("click", function (e) {
     e.preventDefault();
-    // target user entered values with let
-    let addedDate = dayInput.value;
-    let addedMonth = monthInput.value;
-    let addedYear = yearInput.value;
+    // target user entered values
+    const addedDate = dayInput.value;
+    const addedMonth = monthInput.value;
+    const addedYear = yearInput.value;
     const validDate = validateInput(addedDate, addedMonth, addedYear);
     // console.log(validDate);
     if (validDate) {
@@ -86,6 +86,7 @@ function validateInput(inputD, inputM, inputY) {
         errorMessageYear.classList.add("hidden");
         yearInput.style.border = "1px solid var(--border)";
     }
+    
     return inputD, inputM, inputY; // return all inputs so that they can be used by subsequent code
 };
 
@@ -118,7 +119,7 @@ function calcDateTillNow(inputD, inputM, inputY) {
         yearResult--;
     }
     
-    // calc days if dateResult is negative or 0
+    // calc days if dateResult is negative
     if (dateResult < 0) {
         if (
             // Months with 31 days
