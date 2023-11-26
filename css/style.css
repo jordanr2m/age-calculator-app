@@ -146,3 +146,40 @@ input[type=submit]:hover {
 .attribution a {
     color: hsl(228, 45%, 44%);
 }
+
+
+/* ------ MEDIA QUERIES ----- */
+/* Tablet and Desktop Design */
+@media all and (min-width: 768px) {
+    .card {
+        max-width: 550px;
+        width: 90%;
+        padding: 2.5em;
+        padding-top: 2em;
+    }
+
+    .results p {
+        font-size: 4em;
+        margin-top: 0;
+    }
+
+    .user-input {
+        justify-content: flex-start;
+    }
+
+    .divider {
+        padding-top: 0;
+    }
+
+    input[type=number] {
+        width: 100px;
+        margin-right: 1.5em;
+    }
+
+    input[type=submit] {
+        align-self: flex-end;
+        padding: 10px 19px 6px 19px;
+        font-size: 2.5em;
+        top: 55%;
+    }
+}
